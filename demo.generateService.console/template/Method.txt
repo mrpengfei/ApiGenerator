@@ -1,0 +1,13 @@
+﻿/// <summary>
+/// 
+/// </summary>
+{param}
+/// <returns>
+/// 
+/// </returns>
+/// 创建者：史鹏飞
+/// 创建日期：{createtime}
+/// 修改者：
+/// 修改时间：
+/// ----------------------------------------------------------------------------------------
+{returnTypeName} {methodName}(LoginParameter parameter);
