@@ -275,6 +275,19 @@ namespace GenerateService
                 }
                 sb.AppendFormat("{0} {1}", GetParameterType(item),
                     item.Name.Replace("request", "parameter"));
+                if (item.HasDefaultValue)
+                {
+                    sb.Append(" = ");
+                    if (item.RawDefaultValue =="")
+                    {
+                        sb.Append("\"\"");
+                    }
+                    if (item.RawDefaultValue == null)
+                    {
+                        sb.Append("null");
+                    }
+                    sb.Append(item.RawDefaultValue);
+                }
             }
             return sb.ToString();
         }
