@@ -133,14 +133,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="template\DaiShu.CrowdFunded.Controllers.dll" />
-    <Content Include="template\DaiShu.CrowdFunded.Controllers.XML">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="template\DaiShu.NationalSale.Controllers.XML">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="template\IService.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
