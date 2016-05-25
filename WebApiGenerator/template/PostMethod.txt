@@ -23,3 +23,9 @@
                 Result = json["Result"].ToObject<{result}>(),
 	            {count}
             };
+
+
+
+			var url = {url};
+            {postData}
+            return {getResult};

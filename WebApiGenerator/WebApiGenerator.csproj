@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DaiShu.CrowdFunded.Controllers">
+      <HintPath>template\DaiShu.CrowdFunded.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="DaiShu.CrowdFunded.Model">
+      <HintPath>template\DaiShu.CrowdFunded.Model.dll</HintPath>
+    </Reference>
     <Reference Include="DaiShu.NationalSale.Controllers">
       <HintPath>template\DaiShu.NationalSale.Controllers.dll</HintPath>
     </Reference>
@@ -127,6 +133,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="template\DaiShu.CrowdFunded.Controllers.dll" />
+    <Content Include="template\DaiShu.CrowdFunded.Controllers.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="template\DaiShu.NationalSale.Controllers.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

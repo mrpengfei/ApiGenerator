@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using {namespace}.Admin.Controllers.IServices;
-using {namespace}.Admin.Model;
-using {namespace}.Admin.Model.Services;
-using {namespace}.Admin.Utility;
+using {namespace}.Controllers.IServices;
+using {namespace}.Model;
+using {namespace}.Model.Services;
+using {namespace}.Utility;
 using Newtonsoft.Json.Linq;
 
-namespace {namespace}.Admin.Services
+namespace {namespace}.Services
 {
     /// <summary>
     /// 接口名称：{serviceName}
-    /// 命名空间：{namespace}.Admin.Controllers.Services
+    /// 命名空间：{namespace}.Controllers.Services
     /// 接口功能：
     /// </summary>
     /// 创建者：史鹏飞
@@ -20,6 +20,24 @@ namespace {namespace}.Admin.Services
     /// ----------------------------------------------------------------------------------------
     public class {serviceName} :TestService,I{serviceName} 
     {
+		/// <summary>
+        /// 取得 路由前缀
+        /// </summary>
+        /// 创建者：史鹏飞
+        /// 创建日期：2016/4/13 15:38
+        /// 修改者：
+        /// 修改时间：
+        /// ----------------------------------------------------------------------------------------
+        /// 创建者：史鹏飞
+        /// 创建日期：2016/4/13 14:52
+        /// 修改者：
+        /// 修改时间：
+        /// ----------------------------------------------------------------------------------------
+        protected override string RoutePrefix
+        {
+            get { return "{routePrefix}"; }
+        }
+
 {method}   
     }
 }

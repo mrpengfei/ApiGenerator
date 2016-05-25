@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace WebApiGenerator
 {
@@ -21,7 +22,8 @@ namespace WebApiGenerator
         {
             GenerateService service = new GenerateService();
             service.Generate();
-            MessageBox.Show("生成完成");
+            System.Diagnostics.Process.Start(service.BasePath);
+            System.Environment.Exit(0);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
-using {namespace}.Admin.Model;
-using {namespace}.Admin.Model.Services;
+using {namespace}.Model;
+using {namespace}.Model.Services;
 
-namespace {namespace}.Admin.Controllers.IServices
+namespace {namespace}.Controllers.IServices
 {
     /// <summary>
     /// 接口名称：{serviceName}
-    /// 命名空间：{namespace}.Admin.Controllers.IServices
+    /// 命名空间：{namespace}.Controllers.IServices
     /// 接口功能：
     /// </summary>
     /// 创建者：史鹏飞
