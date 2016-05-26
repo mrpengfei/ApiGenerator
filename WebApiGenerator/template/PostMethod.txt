@@ -1,31 +1,3 @@
-﻿            string result;
-            var postData = {postData};
-            using (var client = ServiceCommon.CreateApiWebClient())
-            {
-                var url = {url};
-                var address = ServiceCommon.GetApiAddress(url);
-                result = {getResult};
-            }
-
-            var json = JObject.Parse(result);
-            var state = json["State"].ToObject<bool>();
-            if (!state)
-            {
-                return new {returnType}
-                {
-                    State = false,
-                    Messge = json["Message"]["Messge"].ToObject<string>(),
-                    Code = json["Message"]["Code"].ToObject<string>()
-                };
-            }
-            return new {returnType}
-            {
-                Result = json["Result"].ToObject<{result}>(),
-	            {count}
-            };
-
-
-
-			var url = {url};
+﻿			var url = {url};
             {postData}
             return {getResult};

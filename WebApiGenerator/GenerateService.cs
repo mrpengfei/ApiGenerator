@@ -39,21 +39,21 @@ namespace WebApiGenerator
 
         //private readonly string apiAddressPrefix = "daishu/nationalsale/api/";
 
-        private readonly string modelDirectory = @"D:\DaiShuProgram\daishu.crowdfunded\DaiShu.CrowdFunded.Model\Controller";
+        private readonly string modelDirectory = @"D:\DaiShuProgram\daishu.crm\DaiShu.Crm.Model\Controller";
 
         private readonly string sourceSuffix = "Request";
 
-        private readonly string destinationSuffix = "Request";
+        private readonly string destinationSuffix = "Parameter";
 
         private readonly string sourceParameterName = "request";
 
-        private readonly string destinationParameterName = "request";
+        private readonly string destinationParameterName = "parameter";
 
-        private readonly string nameSpace = "DaiShu.CrowdFunded.Web";
+        private readonly string nameSpace = "DaiShu.Crm.Admin";
 
-        private readonly string apiAddressPrefix = "daishu/nationalsale/api/";
+        private readonly string apiAddressPrefix = "daishu/crm/api/";
 
-        
+
 
 
 
@@ -94,7 +94,7 @@ namespace WebApiGenerator
             var basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "GenerateFold");
             if (Directory.Exists(basePath))
             {
-                Directory.Delete(basePath,true);                    
+                Directory.Delete(basePath, true);
             }
             BasePath = basePath;
             return basePath;
@@ -186,7 +186,7 @@ namespace WebApiGenerator
         public string GetRoutePrefix(Type controller)
         {
             var routePrefix = controller.GetCustomAttribute<RoutePrefixAttribute>();
-            return routePrefix.Prefix;
+            return routePrefix.Prefix.Replace(apiAddressPrefix, "");
         }
 
 
@@ -232,7 +232,7 @@ namespace WebApiGenerator
                 {
                     return "this.GetResultList<" + parameterTypeName + ">(url)";
                 }
-                return "this.GetResultList<" + parameterTypeName + ">(url)";
+                return "this.GetResult<" + parameterTypeName + ">(url)";
             }
             return "this.Post<" + parameterTypeName + ">(url,postData)";
         }
@@ -240,7 +240,7 @@ namespace WebApiGenerator
         private string GetUrl(MethodInfo methodInfo)
         {
             var route = methodInfo.GetCustomAttribute<RouteAttribute>();
-            if (route==null)
+            if (route == null)
             {
                 return "";
             }
@@ -253,7 +253,7 @@ namespace WebApiGenerator
             string urlParaV = "";
             for (int i = 0; i < parameters.Length; i++)
             {
-                if (parameters[i].Name==sourceParameterName)
+                if (parameters[i].Name == sourceParameterName)
                 {
                     continue;
                 }
@@ -265,38 +265,39 @@ namespace WebApiGenerator
                 }
                 else
                 {
-                    if (urlPara!="")
+                    if (urlPara != "")
                     {
                         urlPara += "&";
                     }
                     urlPara += parameters[i].Name + "={" + i + "}";
                 }
             }
-            var url = routeTem ;
+            var url = routeTem;
             if (!string.IsNullOrEmpty(urlPara))
             {
                 url += "?" + urlPara;
             }
             return string.Format("string.Format(\"{0}\"{1})",
-                url,urlParaV);
+                url, urlParaV);
         }
 
         private string GetPostData(MethodInfo methodInfo)
         {
+            var result = "var postData =";
             var httpGet = methodInfo.GetCustomAttribute<HttpGetAttribute>();
             if (httpGet != null)
             {
                 return string.Empty;
             }
             ParameterInfo[] parameters = methodInfo.GetParameters();
-            if (parameters.Length == 1 && parameters[0].Name==sourceParameterName)
+            if (parameters.Length == 1 && parameters[0].Name == sourceParameterName)
             {
-                return destinationParameterName+".Serialize()";
+                return result + destinationParameterName + ".Serialize();";
             }
-            return "\"\"";
+            return result + "\"\";";
         }
 
-        
+
 
         private string GetReturnParaName(MethodInfo method)
         {
@@ -325,7 +326,7 @@ namespace WebApiGenerator
                 if (item.HasDefaultValue)
                 {
                     sb.Append(" = ");
-                    if (item.RawDefaultValue =="")
+                    if (item.RawDefaultValue == "")
                     {
                         sb.Append("\"\"");
                     }
@@ -376,7 +377,7 @@ namespace WebApiGenerator
         {
             var controller = method.DeclaringType.Name;
             var name = "M:" + GetApiNameSpace(nameSpace) + ".Controllers." + controller + "." + method.Name;
-            var xml = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"template\"+GetApiNameSpace(nameSpace)+".Controllers.XML");
+            var xml = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"" + GetApiNameSpace(nameSpace) + ".Controllers.XML");
             var doc = XDocument.Load(xml);
             XElement element = doc.XPathSelectElements("//member").FirstOrDefault(u => u.Attribute("name").Value.Contains(name));
             if (element == null)
@@ -388,22 +389,22 @@ namespace WebApiGenerator
             var paramList = element.Elements("param");
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("            /// <summary>");
-            sb.AppendLine("            /// " + summary.Trim());
-            sb.AppendLine("            /// </summary>");
+            sb.AppendLine("        /// <summary>");
+            sb.AppendLine("        /// " + summary.Trim());
+            sb.AppendLine("        /// </summary>");
             foreach (var xElement in paramList)
             {
-                sb.AppendFormat("            /// <param name=\"{0}\">{1}</param>", xElement.Attribute("name").Value.Replace(sourceParameterName, destinationParameterName), xElement.Value);
+                sb.AppendFormat("        /// <param name=\"{0}\">{1}</param>", xElement.Attribute("name").Value.Replace(sourceParameterName, destinationParameterName), xElement.Value);
                 sb.AppendLine();
             }
-            sb.AppendLine("            /// <returns>");
-            sb.AppendLine("            /// ");
-            sb.AppendLine("            /// </returns>");
-            sb.AppendLine("            /// 创建者：史鹏飞");
-            sb.AppendLine("            /// 创建日期：" + DateTime.Now.ToString("yyyy/MM/dd HH:mm"));
-            sb.AppendLine("            /// 修改者：");
-            sb.AppendLine("            /// 修改时间：");
-            sb.Append("            /// ----------------------------------------------------------------------------------------");
+            sb.AppendLine("        /// <returns>");
+            sb.AppendLine("        /// ");
+            sb.AppendLine("        /// </returns>");
+            sb.AppendLine("        /// 创建者：史鹏飞");
+            sb.AppendLine("        /// 创建日期：" + DateTime.Now.ToString("yyyy/MM/dd HH:mm"));
+            sb.AppendLine("        /// 修改者：");
+            sb.AppendLine("        /// 修改时间：");
+            sb.Append("        /// ----------------------------------------------------------------------------------------");
 
 
 
@@ -424,17 +425,17 @@ namespace WebApiGenerator
             foreach (var controller in controllers)
             {
                 var serviceName = controller.Name.Replace("Controller", "Service");
-                sb.AppendFormat("<component id=\""+nameSpace+".Services.{0}\"", serviceName);
+                sb.AppendFormat("<component id=\"" + nameSpace + ".Services.{0}\"", serviceName);
                 sb.AppendLine();
                 sb.AppendFormat(
-                    "   service=\""+nameSpace+".Controllers.IServices.I{0}, "+nameSpace+".Controllers\"",
+                    "   service=\"" + nameSpace + ".Controllers.IServices.I{0}, " + nameSpace + ".Controllers\"",
                     serviceName);
                 sb.AppendLine();
-                sb.AppendFormat("   type=\""+nameSpace+".Services.{0}, "+nameSpace+".Services\">",
+                sb.AppendFormat("   type=\"" + nameSpace + ".Services.{0}, " + nameSpace + ".Services\">",
                     serviceName);
                 sb.AppendLine();
                 sb.AppendLine(" <interceptors>");
-                sb.AppendLine("     <interceptor>${"+nameSpace+".Interceptor.ServiceInterceptor}</interceptor>");
+                sb.AppendLine("     <interceptor>${" + nameSpace + ".Interceptor.ServiceInterceptor}</interceptor>");
                 sb.AppendLine(" </interceptors>");
                 sb.AppendLine("</component>");
                 sb.AppendLine();
@@ -471,7 +472,7 @@ namespace WebApiGenerator
         private List<Type> GetControllers(Assembly assembly)
         {
             var controllers = assembly.ExportedTypes
-                .Where(u => u.BaseType != null && u.BaseType.Name.Contains("ApiController")).ToList();
+                .Where(u => u.BaseType != null && u.BaseType.Name.Contains("BaseController")).ToList();
             if (!controllers.Any())
             {
                 Message = "没有符合的controller";

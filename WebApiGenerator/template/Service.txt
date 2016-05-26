@@ -18,7 +18,8 @@ namespace {namespace}.Services
     /// 修改者：
     /// 修改时间：
     /// ----------------------------------------------------------------------------------------
-    public class {serviceName} :TestService,I{serviceName} 
+    [Service(BaseType = typeof(I{serviceName}))]
+	public class {serviceName} :TestService,I{serviceName} 
     {
 		/// <summary>
         /// 取得 路由前缀
