@@ -329,12 +329,14 @@ namespace WebApiGenerator
                     if (item.RawDefaultValue == "")
                     {
                         sb.Append("\"\"");
+                        continue;
                     }
                     if (item.RawDefaultValue == null)
                     {
                         sb.Append("null");
+                        continue;
                     }
-                    sb.Append(item.RawDefaultValue);
+                    sb.Append(item.RawDefaultValue.ToString().ToLower());
                 }
             }
             return sb.ToString();
