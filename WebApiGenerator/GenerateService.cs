@@ -25,40 +25,36 @@ namespace WebApiGenerator
 
         public string BasePath { get; set; }
 
-        //private readonly string modelDirectory = @"D:\DaiShuProgram\daishu.nationalsale\DaiShu.NationalSale.Model\Controller";
+        #region crm
+        private readonly string modelDirectory;
 
-        //private readonly string sourceSuffix = "Request";
+        private readonly string sourceSuffix;
 
-        //private readonly string destinationSuffix = "Parameter";
+        private readonly string destinationSuffix;
 
-        //private readonly string sourceParameterName = "request";
+        private readonly string sourceParameterName;
 
-        //private readonly string destinationParameterName = "parameter";
+        private readonly string destinationParameterName;
 
-        //private readonly string nameSpace = "DaiShu.NationalSale";
+        private readonly string nameSpace;
 
-        //private readonly string apiAddressPrefix = "daishu/nationalsale/api/";
-
-        private readonly string modelDirectory = @"D:\DaiShuProgram\daishu.crm\DaiShu.Crm.Model\Controller";
-
-        private readonly string sourceSuffix = "Request";
-
-        private readonly string destinationSuffix = "Parameter";
-
-        private readonly string sourceParameterName = "request";
-
-        private readonly string destinationParameterName = "parameter";
-
-        private readonly string nameSpace = "DaiShu.Crm.Admin";
-
-        private readonly string apiAddressPrefix = "daishu/crm/api/";
+        private readonly string apiAddressPrefix;
+        #endregion
+       
 
 
 
 
 
-        public GenerateService()
+        public GenerateService(GeneratorModel model)
         {
+            this.modelDirectory = model.ModelDirectory;
+            this.sourceSuffix = model.SourceSuffix;
+            this.destinationSuffix = model.DestinationSuffix;
+            this.sourceParameterName = model.SourceParameterName;
+            this.destinationParameterName = model.DestinationParameterName;
+            this.nameSpace = model.NameSpace;
+            this.apiAddressPrefix = model.ApiAddressPrefix;
         }
 
         public bool Generate()

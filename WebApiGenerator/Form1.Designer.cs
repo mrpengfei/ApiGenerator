@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.BtnGenerate = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // BtnGenerate
@@ -41,11 +42,22 @@
             this.BtnGenerate.UseVisualStyleBackColor = true;
             this.BtnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownHeight = 200;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.IntegralHeight = false;
+            this.comboBox1.Location = new System.Drawing.Point(21, 64);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(235, 20);
+            this.comboBox1.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.BtnGenerate);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +68,7 @@
         #endregion
 
         private System.Windows.Forms.Button BtnGenerate;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

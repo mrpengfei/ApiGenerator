@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Generators>
+  <Generator name="DaiShu.Crm.Admin">
+    <modelDirectory>D:\DaiShuProgram\DaiShu.Crm\DaiShu.Crm.Model\Controller</modelDirectory>
+    <sourceSuffix>Request</sourceSuffix>
+    <destinationSuffix>Parameter</destinationSuffix>
+    <sourceParameterName>request</sourceParameterName>
+    <destinationParameterName>parameter</destinationParameterName>
+    <nameSpace>DaiShu.Crm.Admin</nameSpace>
+    <apiAddressPrefix>daishu/crm/api/</apiAddressPrefix>
+  </Generator>
+  <Generator name="DaiShu.Crm.Investment.Admin">
+    <modelDirectory>D:\DaiShuProgram\DaiShu.Crm.Investment\DaiShu.Crm.Investment.Model\Controller</modelDirectory>
+    <sourceSuffix>Request</sourceSuffix>
+    <destinationSuffix>Parameter</destinationSuffix>
+    <sourceParameterName>request</sourceParameterName>
+    <destinationParameterName>parameter</destinationParameterName>
+    <nameSpace>DaiShu.Crm.Investment.Admin</nameSpace>
+    <apiAddressPrefix>daishu/crm/investment/api/</apiAddressPrefix>
+  </Generator>
+</Generators> 
